@@ -36,4 +36,26 @@ return require('packer').startup(function(use)
   use('hrsh7th/cmp-cmdline')
   use('hrsh7th/nvim-cmp')
 
+  use('theprimeagen/harpoon')
+
+  use {
+	  "windwp/nvim-autopairs",
+	  event = "InsertEnter",
+	  config = function()
+		  require("nvim-autopairs").setup {}
+	  end
+  }
+
+  use {
+	  "stevearc/conform.nvim",
+	  opts = {
+		  formatters_by_ft = {
+			  javascript = { "prettier" },
+			  javascriptreact = { "prettier" },
+			  typescript = { "prettier" },
+			  typescriptreact = { "prettier" },
+		  },
+	  },
+  }
+
 end)
