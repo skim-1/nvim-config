@@ -5,6 +5,16 @@ require("mason-lspconfig").setup({
   ensure_installed = { "pyright", "eslint", "lua_ls", "gopls", "html", "ast_grep", "ltex"}, -- add more here
 })
 
+local lspconfig = require("lspconfig")
+
+-- This will automatically setup all installed servers using lspconfig
+require("mason-lspconfig").setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      capabilities = require("cmp_nvim_lsp").default_capabilities()
+    })
+  end,
+})
 
 cmp.setup({
   snippet = {
